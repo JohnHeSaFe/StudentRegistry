@@ -1,0 +1,5 @@
+Jane;Smith;22;Mathematics;B987654
+Bob;Williams;21;Engineering;D543210
+Emily;Brown;23;Medicine;E765432
+Sarah;Miller;22;Psychology;G987321
+Chris;Wilson;21;Law;H567123
