@@ -22,9 +22,23 @@ public class StudentRegistry {
     private static File getFile() {
         String fileRoute = System.getProperty("user.dir");
         String separator = File.separator;
-        File record = new File(fileRoute + separator + "record.txt");
+        
+        File directory = new File(fileRoute + separator + "files");
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        
+        File record = new File(directory + separator+ "record.txt");
+        if (!record.exists()) {
+            try {
+                record.createNewFile();
+            } catch (IOException e) {
+                System.out.println("Error creating file");
+            }
+        }
         return record;
     }
+    
     public static BufferedReader getBufferedReaderConsole() {
         InputStream in = System.in;
         InputStreamReader is = new InputStreamReader(in);
