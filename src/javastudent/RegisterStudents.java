@@ -23,7 +23,7 @@ public class RegisterStudents {
         System.out.println("-------------------------");
         
         BufferedReader brConsole = StudentRegistry.getBufferedReaderConsole();
-        int option = 0;
+        int option;
         while (true) {
             System.out.println("\n----------------------");
             System.out.println("Registry Students menu");

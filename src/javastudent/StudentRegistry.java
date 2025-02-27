@@ -28,7 +28,7 @@ public class StudentRegistry {
             directory.mkdir();
         }
         
-        File record = new File(directory + separator+ "record.txt");
+        File record = new File(directory + separator + "record.txt");
         if (!record.exists()) {
             try {
                 record.createNewFile();
@@ -124,8 +124,18 @@ public class StudentRegistry {
             try {
                 System.out.print("Enter first name: ");
                 String firstName = brConsole.readLine();
+                if (firstName.isEmpty()) {
+                    System.out.println("First Name is empty");
+                    continue;
+                }
+                
                 System.out.print("Enter last name: ");
                 String lastName = brConsole.readLine();
+                if (lastName.isEmpty()) {
+                    System.out.println("Last Name is empty");
+                    continue;
+                }
+                
                 int age;
                 try {
                     System.out.print("Enter age: ");
@@ -138,12 +148,20 @@ public class StudentRegistry {
                     System.out.println("Age must be an integer");
                     continue;
                 }
+                
                 System.out.print("Enter course: ");
                 String course = brConsole.readLine();
+                if (course.isEmpty()) {
+                    System.out.println("Course is empty");
+                    continue;
+                }
                 
                 System.out.print("Enter NID: ");
                 String nid = brConsole.readLine();
-
+                if (nid.isEmpty()) {
+                    System.out.println("NID is empty");
+                    continue;
+                }
                 if (searchStudentByNid(nid) != null) {
                     System.out.println("A student with this NID already exists");
                     return null;
@@ -225,7 +243,6 @@ public class StudentRegistry {
             }
         }
         
-        System.out.println("Student not found with an NID " + nid);
         return null;
     }
     
