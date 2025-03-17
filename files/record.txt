@@ -1,5 +1,16 @@
-1;2;3;4;2
-2;1;4;2;3
-1;2;4;5;6
+Victor;Grier;19;Dam;87654321J
+Sara;Lopez;17;Arts;66554433P
+Lucia;Ortega;16;Chemistry;33445566R
+John Henard;Salango Fernandez;94;Data Structures & Algorithms;09876543H
+Miguel;Ramirez;21;Physics;11223344A
+Elena;Martinez;18;Mathematics;55667788B
+Carlos;Fernandez;22;Computer Science;99887766C
+Laura;Gomez;20;Biology;22334455D
+Pablo;Santos;23;Engineering;66778899E
+David;Morales;25;Law;88990011G
+Sofia;Jimenez;17;Literature;33221144H
+Fernando;Castro;24;Architecture;77665588I
+Dasd;Asdasd;1;Introduction To Java;12345678E
+
 
 
