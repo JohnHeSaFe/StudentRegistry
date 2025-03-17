@@ -19,15 +19,18 @@ import java.util.ArrayList;
  * @author henar
  */
 public class StudentRegistry {
+    // Get the file of the students data
     private static File getFile() {
         String fileRoute = System.getProperty("user.dir");
         String separator = File.separator;
         
+        // Create directory for files in project route if not existed
         File directory = new File(fileRoute + separator + "files");
         if (!directory.exists()) {
             directory.mkdir();
         }
         
+        // Create file to collect students in files directory if not existed
         File record = new File(directory + separator + "record.txt");
         if (!record.exists()) {
             try {
@@ -39,6 +42,7 @@ public class StudentRegistry {
         return record;
     }
     
+    // Create a bufferedReader to read the console inputs from the user
     public static BufferedReader getBufferedReaderConsole() {
         InputStream in = System.in;
         InputStreamReader is = new InputStreamReader(in);
@@ -46,6 +50,7 @@ public class StudentRegistry {
         return brConsole;
     }
     
+    // Create a bufferedReader to read the file that contains students info 
     private static BufferedReader getBufferedReaderFile() {
         File record = getFile();
         BufferedReader brFile = null;
@@ -58,6 +63,7 @@ public class StudentRegistry {
         return brFile;
     }
     
+    // Create a bufferedWriter to write the file that contains students info 
     private static BufferedWriter getBufferedWriter(Boolean overwrite) {
         File record = getFile();
         BufferedWriter bw = null;
@@ -71,12 +77,14 @@ public class StudentRegistry {
         return bw;
     }
        
+    // Get an ArrayList of students to edit the file
     public static ArrayList<Student> getStudentsFromFile() {
         ArrayList<Student> students = new ArrayList<>();
         BufferedReader brFile = getBufferedReaderFile();
         try {
             String line;
             String [] lineValues;
+            // For each line of the file if there's info collect it to the ArrayList.
             while (true) {
                 line = brFile.readLine();
                 
@@ -98,6 +106,7 @@ public class StudentRegistry {
         return students;
     }
     
+    // Add the student info to the end of the file
     public static void addStudent() {
         Student student = createStudent();
         if (student == null) {
@@ -106,6 +115,7 @@ public class StudentRegistry {
         
         BufferedWriter bw = getBufferedWriter(true);
         try {
+            // Add to the last line the info of a student in a formmated way
             bw.write(student.getFirstName() + ";" + student.getLastName() + ";" + student.getAge() + ";" + student.getCourse() + ";" + student.getNid());
             bw.newLine();
             bw.flush();
@@ -115,6 +125,7 @@ public class StudentRegistry {
         }
     }
     
+    // User interface to collect and validate the info of a student that will be added to the file
     public static Student createStudent() {
         BufferedReader brConsole = getBufferedReaderConsole();
         System.out.println("------------------------------");
@@ -162,6 +173,7 @@ public class StudentRegistry {
                     System.out.println("NID is empty");
                     continue;
                 }
+                // NID cannot be repeated
                 if (searchStudentByNid(nid) != null) {
                     System.out.println("A student with this NID already exists");
                     return null;
@@ -184,12 +196,14 @@ public class StudentRegistry {
     }
     
     public static void removeStudent() {
+        // Collect all the students from the file to an ArrayList
         ArrayList<Student> students = getStudentsFromFile();
         
         System.out.println("--------------------------");
         System.out.println("Removing a student profile");
         System.out.println("--------------------------");
         
+        // Remove the student if found from the ArrayList
         Student studentToRemove = searchStudentByNid();
         if (studentToRemove == null) {
             System.out.println("Error removing a student.");
@@ -197,6 +211,7 @@ public class StudentRegistry {
         }
         students.remove(studentToRemove);
         
+        // Write again all the data from the ArrayList to the file but without the student that was removed 
         String content = "";
         for (Student student : students) {
             content += student.getFirstName() + ";" + student.getLastName() + ";" + student.getAge() + ";" + student.getCourse() + ";" + student.getNid() + "\n";
@@ -212,7 +227,9 @@ public class StudentRegistry {
         }   
     }
     
+    // User interface to enter an NID and return a student if found 
     public static Student searchStudentByNid() {
+        // Show to user all students of the file
         ArrayList<Student> students = getStudentsFromFile();
         showListStudents();
         BufferedReader brConsole = getBufferedReaderConsole();
@@ -224,6 +241,7 @@ public class StudentRegistry {
             System.out.println("Error reading console");
         }
         
+        // Return a student if there's a student with the NID introduced
         for (Student student : students) {
             if (student.getNid().equals(nid)) {    
                 return student;
